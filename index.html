@@ -24,7 +24,7 @@
       const targetUrl = document.getElementById('targetUrl').value;
 
       // Generate the QR code URL
-      const qrUrl = `https://abdullrahmanmostafa.github.io/qr-mask/redirect.html#${encodeURIComponent(targetUrl)}`;
+      const qrUrl = `https://abdullrahmanmostafa.github.io/qr-mask/redirect.html?source=${encodeURIComponent(sourceUrl)}&target=${encodeURIComponent(targetUrl)}`;
       console.log('QR Code URL:', qrUrl);
 
       // Generate QR code for the source URL
