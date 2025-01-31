@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>QR Code Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input { width: 300px; margin: 10px; padding: 8px; }
+    button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>QR Code Redirect Generator</h1>
+  <input type="text" id="sourceUrl" placeholder="Source URL (e.g., https://instagram.com)">
+  <br>
+  <input type="text" id="targetUrl" placeholder="Target URL (e.g., https://facebook.com)">
+  <br>
+  <button onclick="generateQR()">Generate QR Code</button>
+  <div id="qrcode" style="margin-top: 20px;"></div>
+
   <script>
-    // Extract target URL from the fragment identifier
-    const target = window.location.hash.substring(1);
-    if (target) {
-      // Mask the URL to show the source (removes GitHub URL from address bar)
-      history.replaceState({}, '', '/');
-      // Redirect to target
-      window.location.href = decodeURIComponent(target);
+    function generateQR() {
+      const sourceUrl = document.getElementById('sourceUrl').value;
+      const targetUrl = document.getElementById('targetUrl').value;
+
+      // Generate the QR code URL
+      const qrUrl = `https://abdullrahmanmostafa.github.io/qr-mask/redirect.html#${encodeURIComponent(targetUrl)}`;
+      console.log('QR Code URL:', qrUrl);
+
+      // Generate QR code for the source URL
+      const qrDiv = document.getElementById('qrcode');
+      qrDiv.innerHTML = ''; // Clear previous QR code
+      new QRCode(qrDiv, {
+        text: sourceUrl, // QR encodes the source URL directly
+        width: 256,
+        height: 256
+      });
+
+      // Optional: Display the QR code URL for debugging
+      console.log('Scan this URL:', qrUrl);
     }
   </script>
-</head>
-<body></body>
+</body>
 </html>
