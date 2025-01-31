@@ -24,19 +24,18 @@
       const targetUrl = document.getElementById('targetUrl').value;
 
       // Generate the QR code URL
-      const qrUrl = `https://abdullrahmanmostafa.github.io/qr-mask/redirect.html?source=${encodeURIComponent(sourceUrl)}&target=${encodeURIComponent(targetUrl)}`;
-      console.log('QR Code URL:', qrUrl);
+      const qrUrl = `${window.location.origin}/redirect.html#source=${encodeURIComponent(sourceUrl)}&target=${encodeURIComponent(targetUrl)}`;
 
       // Generate QR code for the source URL
       const qrDiv = document.getElementById('qrcode');
-      qrDiv.innerHTML = ''; // Clear previous QR code
+      qrDiv.innerHTML = '';
       new QRCode(qrDiv, {
         text: sourceUrl, // QR encodes the source URL directly
         width: 256,
         height: 256
       });
 
-      // Optional: Display the QR code URL for debugging
+      // For debugging
       console.log('Scan this URL:', qrUrl);
     }
   </script>
