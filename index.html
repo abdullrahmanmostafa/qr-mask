@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    // Extract target URL from the fragment identifier
+    const target = window.location.hash.substring(1);
+    if (target) {
+      // Mask the URL to show the source (removes GitHub URL from address bar)
+      history.replaceState({}, '', '/');
+      // Redirect to target
+      window.location.href = decodeURIComponent(target);
+    }
+  </script>
+</head>
+<body></body>
+</html>
