@@ -2,19 +2,18 @@
 <html>
 <head>
   <script>
-    // Extract source and target URLs from query parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const sourceUrl = urlParams.get('source');
-    const targetUrl = urlParams.get('target');
+    // Extract source and target URLs from the hash
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    const sourceUrl = hashParams.get('source');
+    const targetUrl = hashParams.get('target');
 
     if (sourceUrl && targetUrl) {
       // Mask the URL to show the source URL
       history.replaceState({}, '', sourceUrl);
       // Redirect to the target URL
-      window.location.href = targetUrl;
+      window.location.href = decodeURIComponent(targetUrl);
     } else {
-      // Handle invalid URLs
-      document.body.innerHTML = '<p>Invalid URL parameters.</p>';
+      document.body.innerHTML = 'Invalid URL parameters.';
     }
   </script>
 </head>
